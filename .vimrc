@@ -1,4 +1,6 @@
+set relativenumber
 set number
+
 set nocompatible
 
 set hidden
@@ -42,6 +44,21 @@ Plug 'TaDaa/vimade'
 " End Vim-Plug configuration
 call plug#end()
 
+" fzf
+
+":command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, { 'options': ['--layout=reverse', '--info=inline', '--preview'], '--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down' }, <bang>0)
+
+" {'--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down' }
+
+let g:fzf_preview_window = ['up,50%', 'ctrl-/']
+
+" command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, <bang>0)
+
+" :call fzf#run({'--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down'})
+" command! -bang MyFiles cal fzf#vim#files(<q-args>, {'--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down' } , <bang>0)
+
+
+" fzf key bidings
 nnoremap <silent> <Leader>b :Buffers<CR>
 
 " maps control+f to search files with fzf
@@ -64,6 +81,9 @@ nnoremap <silent> <Leader>h: :History:<CR>
 
 nnoremap <silent> <Leader>h/ :History/<CR>
 
+
+
+
 " onedark
 colorscheme onedark
 
@@ -80,8 +100,7 @@ let g:vimade.enablesigns = 1
 " let g:limelight_conceal_ctermfg = 240
 " 
 " let g:limelight_conceal_termfg = 'gray'
-" let g:limelight_conceal_termfg = 240
-" 
+" let g:limelight_conceal_termfg = 240 " 
 " " Color name (:help gui-colors) or RGB color
 " let g:limelight_conceal_guifg = 'DarkGray'
 " let g:limelight_conceal_guifg = '#777777'
