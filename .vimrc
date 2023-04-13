@@ -6,17 +6,13 @@ set nocompatible
 set hidden
 set hls
 
-" netrw
 set nocp
 
 filetype plugin on
 
+" netrw
 " set tree mode as default in Netrw
 let g:netrw_liststyle = 3
-
-
-" Load Vim-Plug plugin manager
-call plug#begin('~/.vim/plugged')
 
 " automatic installation https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -25,38 +21,34 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" fzf plugin for Vim
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Begin Vim-Plug plugin manager
+call plug#begin('~/.vim/plugged')
+
+" theme
+Plug 'joshdick/onedark.vim'
+
+" fadeout
+Plug 'TaDaa/vimade'
+
+" limelight
+Plug 'junegunn/limelight.vim'
 
 " hide
 " Plug 'junegunn/goyo.vim'
 
-" limelight
-" Plug 'junegunn/limelight.vim'
-
-
-Plug 'joshdick/onedark.vim'
-
 Plug 'tpope/vim-surround'
 
-Plug 'TaDaa/vimade'
-" End Vim-Plug configuration
+" fzf plugin for Vim
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" End Vim-Plug plugin manager
 call plug#end()
 
+" Begin Vim-Plug plugin config
+
 " fzf
-
-":command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, { 'options': ['--layout=reverse', '--info=inline', '--preview'], '--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down' }, <bang>0)
-
-" {'--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down' }
-
 let g:fzf_preview_window = ['up,50%', 'ctrl-/']
-
-" command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, <bang>0)
-
-" :call fzf#run({'--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down'})
-" command! -bang MyFiles cal fzf#vim#files(<q-args>, {'--bind': 'ctrl-u:scroll-up,ctrl-d:scroll-down' } , <bang>0)
-
 
 " fzf key bidings
 nnoremap <silent> <Leader>b :Buffers<CR>
@@ -81,9 +73,6 @@ nnoremap <silent> <Leader>h: :History:<CR>
 
 nnoremap <silent> <Leader>h/ :History/<CR>
 
-
-
-
 " onedark
 colorscheme onedark
 
@@ -92,37 +81,39 @@ let g:vimade = {}
 let g:vimade.fadelevel = 0.5
 let g:vimade.enablesigns = 1
 
+
+
+" limelight
 " set background=dark
 " highlight Normal ctermbg=235
-" 
-" " Color name (:help cterm-colors) or ANSI code
-" let g:limelight_conceal_ctermfg = 'gray'
-" let g:limelight_conceal_ctermfg = 240
-" 
-" let g:limelight_conceal_termfg = 'gray'
-" let g:limelight_conceal_termfg = 240 " 
-" " Color name (:help gui-colors) or RGB color
-" let g:limelight_conceal_guifg = 'DarkGray'
-" let g:limelight_conceal_guifg = '#777777'
-" 
-" " Default: 0.5
-" let g:limelight_default_coefficient = 0.7
-" 
-" " Number of preceding/following paragraphs to include (default: 0)
-" let g:limelight_paragraph_span = 1
-" 
-" " Beginning/end of paragraph
-" "   When there's no empty line between the paragraphs
-" "   and each paragraph starts with indentation
-" let g:limelight_bop = '[\{]'
-" let g:limelight_eop = '[\}]'
-" " let g:limelight_bop = '^\s'
-" " let g:limelight_eop = '\ze\n^\s'
-" 
-" " Highlighting priority (default: 10)
-" "   Set it to -1 not to overrule hlsearch
-" let g:limelight_priority = -1
-" autocmd VimEnter * Limelight
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+let g:limelight_conceal_termfg = 'gray'
+let g:limelight_conceal_termfg = 240 " 
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" Default: 0.5
+let g:limelight_default_coefficient = 0.7
+
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1
+
+" Beginning/end of paragraph
+"   When there's no empty line between the paragraphs
+"   and each paragraph starts with indentation
+" TODO let g:limelight_bop = '{\%([^{]*{[^}]*}\)*'
+let g:limelight_bop = '{'
+let g:limelight_eop = '}'
+
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+autocmd VimEnter * Limelight
 
 
 
