@@ -3,12 +3,13 @@ set number
 
 set nocompatible
 
-set hidden
-set hls
-
-set nocp
-
 filetype plugin on
+
+set hidden
+
+set hls
+nnoremap <esc><esc> :noh<return><esc>
+
 
 " netrw
 " set tree mode as default in Netrw
@@ -42,6 +43,9 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
+" chatGPT
+Plug 'madox2/vim-ai', { 'do': './install.sh' }
+
 " End Vim-Plug plugin manager
 call plug#end()
 
@@ -73,6 +77,12 @@ nnoremap <silent> <Leader>h: :History:<CR>
 
 nnoremap <silent> <Leader>h/ :History/<CR>
 
+" keybidings in fzf preview
+" CTRL-T open in a new tab
+" CTRL-X open in a new split
+" CTRL-V open in a new vertical split
+
+
 " onedark
 colorscheme onedark
 
@@ -80,8 +90,6 @@ colorscheme onedark
 let g:vimade = {}
 let g:vimade.fadelevel = 0.5
 let g:vimade.enablesigns = 1
-
-
 
 " limelight
 " set background=dark
@@ -113,7 +121,16 @@ let g:limelight_eop = '}'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
-autocmd VimEnter * Limelight
 
+" autocmd VimEnter * Limelight
 
+" ChatGPT
+xnoremap <leader>c :AIChat<CR>
+nnoremap <leader>c :AIChat<CR>
+
+let myprompt = "Please add comments to the code explaining the code line by line".", and keep in mind that you can only write comments"
+command! -range -nargs=? AICode <line1>,<line2>call AIRun(<range>, myprompt . "Noted that the programming syntax is " . &filetype)
+
+xnoremap <leader>e :AICode<CR>
+nnoremap <leader>e :AICode<CR>
 
