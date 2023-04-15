@@ -31,10 +31,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # picom
-exec --no-startup-id picom --experimental-backends --backend glx --xrender-sync-fence --config /etc/xdg/.config/picom/picom.config
+# exec --no-startup-id picom --experimental-backends --backend glx --xrender-sync-fence --config /etc/xdg/.config/picom/picom.config
+exec --no-startup-id picom --config /etc/xdg/.config/picom/picom.config
 
 # xrandr for monitors
-exec --no-startup-id bash /etc/xdg/.config/xrandr/init.sh
+# exec --no-startup-id bash /etc/xdg/.config/xrandr/init.sh
 
 
 # Use pactl to adjust volume in PulseAudio.
