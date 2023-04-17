@@ -10,6 +10,8 @@ set hidden
 set hls
 nnoremap <esc><esc> :noh<return><esc>
 
+set clipboard=unnamedplus
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " netrw
 " set tree mode as default in Netrw
